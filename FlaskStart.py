@@ -2,7 +2,7 @@ from flask import Flask, request, Response
 import requests
 import json
 
-
+#Initiate a Flask App
 app = Flask(__name__)
 api_key = "Eva5ydwsdS6Py141TMa5UwT0c74q9UuIhSDF31AQNi8"
 

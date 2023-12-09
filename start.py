@@ -8,7 +8,7 @@ latitude = 13.100120
 longitude = 77.596350
 
 # query_location
-query = "Ford"
+query = "Mall"
 limit = 10
 
 # URL
@@ -59,8 +59,10 @@ if response_dis.status_code == 200:
 
         websites = []
         www_values = item.get('www', [])
+        print(www_values)
         for www_value in www_values:
             websites.append(www_value['value'])
+        print(websites)
 
         print(f"Title: {title}")
         print(f"Address: {address}")

@@ -22,15 +22,6 @@ def get_results():
 
     # Check for successful response
     if response_dis.status_code == 200:
-        # Query Api Result
-        query = data_disco["items"][0]["position"]
-        q_address = data_disco["items"][0]["address"]
-        q_street = q_address["label"]
-        q_city = q_address["city"]
-        q_postalCode = q_address["postalCode"]
-        q_lat = query["lat"]
-        q_lng = query["lng"]
-
         response_list=[]
         for item in data_disco['items']:
             title = item['title']
@@ -63,17 +54,11 @@ def get_results():
             response = {"Title": f"{title}", "Address": f"{address}", "Latitude": f"{latitude}", "Longitude": f"{longitude}", "Opening Hours": f"{opening_hours_text}", "Contact Numbers": f"{', '.join(contact_numbers)}", "Websites" : f"{', '.join(websites)}"}
             response_list.append(response)
 
-            print(f"Title: {title}")
-            print(f"Address: {address}")
-            print(f"Latitude: {latitude}, Longitude: {longitude}")
-            print(f"Opening Hours: {opening_hours_text}")
-            print(f"Contact Numbers: {', '.join(contact_numbers)}")
-            print(f"Websites: {', '.join(websites)}")
-            print("-" * 50)
         response = json.dumps(response_list, indent=4)
         data = json.loads(response)
         json_data = json.dumps(data)
         return Response(json_data, status=200, mimetype='application/json')
+
     else:
         print(f"Error: {response_dis.status_code}")
         response = {"Error": f"{response_dis.status_code}"}

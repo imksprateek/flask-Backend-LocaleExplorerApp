@@ -10,7 +10,6 @@ api_key = "Eva5ydwsdS6Py141TMa5UwT0c74q9UuIhSDF31AQNi8"
 @app.route('/v1/apiservice', methods = ['GET'])
 def get_results():
     query_dict = request.args.to_dict(flat=False)
-    print(query_dict)
     latitude = f"{query_dict['latitude'][0]}"
     longitude = f"{query_dict['longitude'][0]}"
     query = f"{query_dict['query'][0]}"
@@ -60,7 +59,6 @@ def get_results():
         return Response(json_data, status=200, mimetype='application/json')
 
     else:
-        print(f"Error: {response_dis.status_code}")
         response = {"Error": f"{response_dis.status_code}"}
         response = json.dumps(response, indent=4)
         data = json.loads(response)
